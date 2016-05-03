@@ -64,6 +64,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="bin\Debug\Emulators\GoombaColor\goomba.gba" />
+    <None Include="bin\Debug\Emulators\GoombaColor\goomba.gom" />
+    <None Include="bin\Debug\Emulators\GoombaColor\goomba.sav" />
+    <None Include="bin\Debug\Emulators\Goomba\goomba.gba" />
+    <None Include="bin\Debug\Emulators\Goomba\goomba.gom" />
+    <None Include="bin\Debug\Emulators\Goomba\goomba.sav" />
+    <None Include="bin\Debug\Emulators\Goomba\SuperMarioLand.gb" />
+    <None Include="Emulators\GoombaColor\goomba.gba" />
+    <None Include="Emulators\GoombaColor\goomba.gom" />
+    <None Include="Emulators\GoombaColor\goomba.sav" />
+    <None Include="Emulators\Goomba\goomba.gba" />
+    <None Include="Emulators\Goomba\goomba.gom" />
+    <None Include="Emulators\Goomba\goomba.sav" />
+    <None Include="Emulators\Goomba\SuperMarioLand.gb" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -73,6 +87,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Emulators\GoombaColor\gbctrim.exe" />
+    <Content Include="bin\Debug\Emulators\GoombaColor\goombafront.exe" />
+    <Content Include="bin\Debug\Emulators\GoombaColor\history.txt" />
+    <Content Include="bin\Debug\Emulators\GoombaColor\readme.txt" />
+    <Content Include="bin\Debug\Emulators\GoombaColor\XG2_lite.raw" />
+    <Content Include="bin\Debug\Emulators\Goomba\goombafront.exe" />
+    <Content Include="bin\Debug\Emulators\Goomba\history.txt" />
+    <Content Include="bin\Debug\Emulators\Goomba\readme.txt" />
+    <Content Include="bin\Debug\Emulators\Goomba\XG2_lite.raw" />
+    <Content Include="bin\Debug\EZer Client.exe" />
+    <Content Include="bin\Debug\EZer Client.pdb" />
+    <Content Include="bin\Debug\EZer Client.vshost.exe" />
+    <Content Include="Emulators\GoombaColor\gbctrim.exe" />
+    <Content Include="Emulators\GoombaColor\goombafront.exe" />
+    <Content Include="Emulators\GoombaColor\history.txt" />
+    <Content Include="Emulators\GoombaColor\readme.txt" />
+    <Content Include="Emulators\GoombaColor\XG2_lite.raw" />
+    <Content Include="Emulators\Goomba\goombafront.exe" />
+    <Content Include="Emulators\Goomba\history.txt" />
+    <Content Include="Emulators\Goomba\readme.txt" />
+    <Content Include="Emulators\Goomba\XG2_lite.raw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\Emulators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
