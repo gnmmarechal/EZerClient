@@ -14,7 +14,13 @@ namespace EZGoomba_Frontend
     public partial class Form1 : Form
     {
         string originrom = "";
-        string goombacolorez = Directory.GetCurrentDirectory() + "Emulators/GoombaColor/goombacolor.gba";
+        string goombacolorez = Directory.GetCurrentDirectory() + "Emulators/GoombaColorEZ/goombacolor.gba";
+        string goombacolorezsav = Directory.GetCurrentDirectory() + "Emulators/GoombaColorEZ/goombacolor.sav";
+        string goombaez = Directory.GetCurrentDirectory() + "Emulators/GoombaEZ/goomba.gba";
+        string goombaezsav = Directory.GetCurrentDirectory() + "Emulators/GoombaEZ/goomba.sav";
+        string goomba = Directory.GetCurrentDirectory() + "Emulators/Goomba/goomba.gba";
+        string goombacolor = Directory.GetCurrentDirectory() + "Emulators/GoombaColor/goombacolor.gba";
+
         public Form1()
         {
             InitializeComponent();
@@ -58,6 +64,16 @@ namespace EZGoomba_Frontend
             else
             {
                 label4.Text = "GB";
+            }
+            radioButton1.Checked = !radioButton2.Checked;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage1"])
+            {
+                MessageBox.Show("Test");
             }
         }
     }
