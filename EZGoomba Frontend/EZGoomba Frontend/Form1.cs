@@ -58,7 +58,6 @@ namespace EZGoomba_Frontend
         {
             string[] fileList = e.Data.GetData(DataFormats.FileDrop) as string[];
             string oldrom = originrom;
-            bool mexican = false;
             originrom = fileList[0];
             if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
             {
@@ -90,22 +89,13 @@ namespace EZGoomba_Frontend
             {
                 label4.Text = "GBC";
                 tabControl1.TabPages["tabPage1"].Enabled = false;
-                if (mexican == false)
-                {
-                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage2"];
-                    mexican = true;
-                }
 
             }
             if (originrom.EndsWith(".gb") || originrom.EndsWith("*.gb.tns"))
             {
                 label4.Text = "GB";
                 tabControl1.TabPages["tabPage1"].Enabled = true;
-                if (mexican == false)
-                {
-                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage1"];
-                    mexican = true;
-                }
+
             }
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
@@ -225,10 +215,9 @@ namespace EZGoomba_Frontend
 
         private void loadROMToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool mexican = false;
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
             openFileDialog2.Filter = "GameBoy ROM (*.gb)|*.gb;|GameBoy Color ROM (*.gbc)|*.gbc|All Files|*.*";
-            openFileDialog2.Title = "Open Emulator ROM";
+            openFileDialog2.Title = "Select ROM";
             openFileDialog2.ShowDialog();
             string oldrom = originrom;
             originrom = openFileDialog2.FileName;
