@@ -168,36 +168,42 @@ namespace EZGoomba_Frontend
                 saveFileDialog1.ShowDialog();
             }
             string destFileName = saveFileDialog1.FileName;
-
-
-            using (Stream destStream = File.OpenWrite(destFileName))
+            if (string.IsNullOrWhiteSpace(destFileName))
             {
-                foreach (string srcFileName in srcFileNames)
+                MessageBox.Show("Canceled Operation.");
+            }
+            else
+            {
+                using (Stream destStream = File.OpenWrite(destFileName))
                 {
-                    using (Stream srcStream = File.OpenRead(srcFileName))
+                    foreach (string srcFileName in srcFileNames)
                     {
-                        srcStream.CopyTo(destStream);
+                        using (Stream srcStream = File.OpenRead(srcFileName))
+                        {
+                            srcStream.CopyTo(destStream);
+                        }
                     }
                 }
+                if (radioButton2.Checked)
+                {
+                    string extension = System.IO.Path.GetExtension(destFileName);
+                    string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                    string savname = finalname + ".sav";
+                    System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombaezsav);
+                }
+                if (radioButton4.Checked)
+                {
+                    string extension = System.IO.Path.GetExtension(destFileName);
+                    string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                    string savname = finalname + ".sav";
+                    System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombacolorezsav);
+                }
+                if (File.Exists("goombaemu.bin"))
+                {
+                    File.Delete("goombaemu.bin");
+                }
             }
-            if (radioButton2.Checked)
-            {
-                string extension = System.IO.Path.GetExtension(destFileName);
-                string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
-                string savname = finalname + ".sav";
-                System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombaezsav);
-            }
-            if (radioButton4.Checked)
-            {
-                string extension = System.IO.Path.GetExtension(destFileName);
-                string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
-                string savname = finalname + ".sav";
-                System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombacolorezsav);
-            }
-            if (File.Exists("goombaemu.bin"))
-            {
-                File.Delete("goombaemu.bin");
-            }
+
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
