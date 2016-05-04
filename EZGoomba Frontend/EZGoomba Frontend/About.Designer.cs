@@ -39,7 +39,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 91);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EZGoomba Frontend\r\n\r\n\r\nCreated by gnmmarechal.\r\n\r\n\r\nVersion: 1.0a";
+            this.label1.Text = "EZGoomba Frontend\r\n\r\n\r\nCreated by gnmmarechal.\r\n\r\n\r\nVersion: 1.0.1a";
             // 
             // About
             // 
