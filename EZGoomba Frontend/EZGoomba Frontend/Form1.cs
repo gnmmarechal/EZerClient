@@ -23,6 +23,7 @@ namespace EZGoomba_Frontend
 
         string customemu = "";
         private string emulator;
+        private string destFileName;
 
         public Form1()
         {
@@ -54,9 +55,18 @@ namespace EZGoomba_Frontend
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             string[] fileList = e.Data.GetData(DataFormats.FileDrop) as string[];
+            string oldrom = originrom;
             originrom = fileList[0];
+            if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
+            {
+                textBox1.Text = originrom;
+            }
+            else
+            {
+                originrom = oldrom;
+                MessageBox.Show("Invalid ROM extension.");
+            }
             label1.Visible = false;
-            textBox1.Text = originrom;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -99,68 +109,51 @@ namespace EZGoomba_Frontend
                 {
                     emulator = customemu;
                 }
-                string[] srcFileNames = { emulator, originrom};
-                if (originrom.EndsWith("*.tns"))
-                {
-                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.Filter = "TI-Nspire Document GBA ROM (*.gba.tns)|*.gba.tns|All Files|*.*";
-                    saveFileDialog1.Title = "Save ROM";
-                    saveFileDialog1.ShowDialog();
-                    string destFileName = saveFileDialog1.FileName;
-                }
-                else
-                {
-                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                    saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
-                    saveFileDialog1.Title = "Save ROM";
-                    saveFileDialog1.ShowDialog();
-                    string destFileName = saveFileDialog1.FileName;
-                }
 
-
-
-                using (Stream destStream = File.OpenWrite(destFileName))
-                {
-                    foreach (string srcFileName in srcFileNames)
-                    {
-                        using (Stream srcStream = File.OpenRead(srcFileName))
-                        {
-                            srcStream.CopyTo(destStream);
-                        }
-                    }
-                }
 
             }
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage2"])
             {
-                if (radioButton1.Checked)
+                if (radioButton6.Checked)
                 {
                     emulator = "goombacolor.gba";
                 }
-                if (radioButton2.Checked)
+                if (radioButton5.Checked)
                 {
                     emulator = "goombacolorez.gba";
                 }
-                if (radioButton3.Checked)
+                if (radioButton4.Checked)
                 {
                     emulator = customemu;
                 }
-                string[] srcFileNames = { emulator, originrom };
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                
+            }
+            string[] srcFileNames = { emulator, originrom };
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            if (originrom.EndsWith("*.tns"))
+            {
+
+                saveFileDialog1.Filter = "TI-Nspire Document GBA ROM (*.gba.tns)|*.gba.tns|All Files|*.*";
+                saveFileDialog1.Title = "Save ROM";
+                saveFileDialog1.ShowDialog();
+                
+            }
+            else
+            {
                 saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
                 saveFileDialog1.Title = "Save ROM";
                 saveFileDialog1.ShowDialog();
+            }
+            string destFileName = saveFileDialog1.FileName;
 
-                string destFileName = saveFileDialog1.FileName;
 
-                using (Stream destStream = File.OpenWrite(destFileName))
+            using (Stream destStream = File.OpenWrite(destFileName))
+            {
+                foreach (string srcFileName in srcFileNames)
                 {
-                    foreach (string srcFileName in srcFileNames)
+                    using (Stream srcStream = File.OpenRead(srcFileName))
                     {
-                        using (Stream srcStream = File.OpenRead(srcFileName))
-                        {
-                            srcStream.CopyTo(destStream);
-                        }
+                        srcStream.CopyTo(destStream);
                     }
                 }
             }
@@ -184,8 +177,40 @@ namespace EZGoomba_Frontend
             openFileDialog2.Filter = "GameBoy ROM (*.gb)|*.gb|GameBoy Color ROM (*.gbc)|*.agb|All Files|*.*";
             openFileDialog2.Title = "Open Emulator ROM";
             openFileDialog2.ShowDialog();
+            string oldrom = originrom;
             originrom = openFileDialog2.FileName;
-            textBox1.Text = originrom;
+            if (originrom.EndsWith(".gbc")||originrom.EndsWith(".gb")||originrom.EndsWith(".gbc.tns")||originrom.EndsWith(".gb.tns"))
+            {
+                originrom = openFileDialog2.FileName;
+                textBox1.Text = originrom;
+            }
+            else
+            {
+                originrom = oldrom;
+                MessageBox.Show("Invalid ROM extension.");
+            }
         }
+
+        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void manualPathEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not available.");
+        }
+
+        private void customEmulatorSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutEZGoombaFrontendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About aboutfrm = new About();
+            aboutfrm.Show();
+        }
+
     }
 }
