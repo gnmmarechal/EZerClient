@@ -111,11 +111,15 @@ namespace EZGoomba_Frontend
             {
                 if (radioButton1.Checked)
                 {
-                    emulator = "goomba.gba";
+                    // emulator = "goomba.gba";
+                    System.IO.File.WriteAllBytes("goombaemu.bin", EZGoomba_Frontend.Properties.Resources.goomba);
+                    emulator = "goombaemu.bin";
                 }
                 if (radioButton2.Checked)
                 {
-                    emulator = "goombaez.gba";
+                    //emulator = "goombaez.gba";
+                    System.IO.File.WriteAllBytes("goombaemu.bin", EZGoomba_Frontend.Properties.Resources.goombaez);
+                    emulator = "goombaemu.bin";
                 }
                 if (radioButton3.Checked)
                 {
@@ -128,11 +132,15 @@ namespace EZGoomba_Frontend
             {
                 if (radioButton6.Checked)
                 {
-                    emulator = "goombacolor.gba";
+                    //emulator = "goombacolor.gba";
+                    System.IO.File.WriteAllBytes("goombaemu.bin", EZGoomba_Frontend.Properties.Resources.goombacolor);
+                    emulator = "goombaemu.bin";
                 }
                 if (radioButton5.Checked)
                 {
-                    emulator = "goombacolorez.gba";
+                    //emulator = "goombacolorez.gba";
+                    System.IO.File.WriteAllBytes("goombaemu.bin", EZGoomba_Frontend.Properties.Resources.goombacolorez);
+                    emulator = "goombaemu.bin";
                 }
                 if (radioButton4.Checked)
                 {
@@ -168,6 +176,20 @@ namespace EZGoomba_Frontend
                         srcStream.CopyTo(destStream);
                     }
                 }
+            }
+            if (radioButton2.Checked)
+            {
+                string extension = System.IO.Path.GetExtension(destFileName);
+                string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                string savname = finalname + ".sav";
+                System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombaezsav);
+            }
+            if (radioButton4.Checked)
+            {
+                string extension = System.IO.Path.GetExtension(destFileName);
+                string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                string savname = finalname + ".sav";
+                System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombacolorezsav);
             }
         }
 
