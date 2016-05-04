@@ -19,7 +19,9 @@ namespace EZGoomba_Frontend
         string goombaez = "goombaez.gba";
         string goombaezsav = "goombaez.sav";
         string goomba = "goomba.gba";
-        string goombacolor = Directory.GetCurrentDirectory() + "Emulators/GoombaColor/goombacolor.gba";
+        string goombacolor = "goombacolor.gba";
+
+        string customemu = "";
         private string emulator;
 
         public Form1()
@@ -63,12 +65,13 @@ namespace EZGoomba_Frontend
             if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
+                tabControl1.TabPages["tabPage1"].Enabled = false;
             }
             if (originrom.EndsWith(".gb") || originrom.EndsWith("*.gb.tns"))
             {
                 label4.Text = "GB";
+                tabControl1.TabPages["tabPage1"].Enabled = true;
             }
-            radioButton1.Checked = !radioButton2.Checked;
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 button1.Enabled = false;
@@ -77,6 +80,7 @@ namespace EZGoomba_Frontend
             {
                 button1.Enabled = true;
             }
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,9 +97,55 @@ namespace EZGoomba_Frontend
                 }
                 if (radioButton3.Checked)
                 {
-
+                    emulator = customemu;
                 }
                 string[] srcFileNames = { emulator, originrom};
+                if (originrom.EndsWith("*.tns"))
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "TI-Nspire Document GBA ROM (*.gba.tns)|*.gba.tns|All Files|*.*";
+                    saveFileDialog1.Title = "Save ROM";
+                    saveFileDialog1.ShowDialog();
+                    string destFileName = saveFileDialog1.FileName;
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                    saveFileDialog1.Title = "Save ROM";
+                    saveFileDialog1.ShowDialog();
+                    string destFileName = saveFileDialog1.FileName;
+                }
+
+
+
+                using (Stream destStream = File.OpenWrite(destFileName))
+                {
+                    foreach (string srcFileName in srcFileNames)
+                    {
+                        using (Stream srcStream = File.OpenRead(srcFileName))
+                        {
+                            srcStream.CopyTo(destStream);
+                        }
+                    }
+                }
+
+            }
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage2"])
+            {
+                if (radioButton1.Checked)
+                {
+                    emulator = "goombacolor.gba";
+                }
+                if (radioButton2.Checked)
+                {
+                    emulator = "goombacolorez.gba";
+                }
+                if (radioButton3.Checked)
+                {
+                    emulator = customemu;
+                }
+                string[] srcFileNames = { emulator, originrom };
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
                 saveFileDialog1.Title = "Save ROM";
@@ -113,8 +163,29 @@ namespace EZGoomba_Frontend
                         }
                     }
                 }
-
             }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                openFileDialog1.Title = "Open Emulator ROM";
+                openFileDialog1.ShowDialog();
+                customemu = openFileDialog1.FileName;
+            }
+        }
+
+        private void loadROMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+            openFileDialog2.Filter = "GameBoy ROM (*.gb)|*.gb|GameBoy Color ROM (*.gbc)|*.agb|All Files|*.*";
+            openFileDialog2.Title = "Open Emulator ROM";
+            openFileDialog2.ShowDialog();
+            originrom = openFileDialog2.FileName;
+            textBox1.Text = originrom;
         }
     }
 }
