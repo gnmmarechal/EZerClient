@@ -14,12 +14,6 @@ namespace EZGoomba_Frontend
     public partial class Form1 : Form
     {
         string originrom = "";
-        string goombacolorez = "goombacolor.gba";
-        string goombacolorezsav = "goombacolor.sav";
-        string goombaez = "goombaez.gba";
-        string goombaezsav = "goombaez.sav";
-        string goomba = "goomba.gba";
-        string goombacolor = "goombacolor.gba";
         bool customset = false;
 
         string customemu = "";
