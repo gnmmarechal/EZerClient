@@ -82,13 +82,13 @@ namespace EZGoomba_Frontend
             if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
-                tabControl1.TabPages["tabPage1"].Enabled = false;
+                //tabControl1.TabPages["tabPage1"].Enabled = false;
 
             }
             if (originrom.EndsWith(".gb") || originrom.EndsWith("*.gb.tns"))
             {
                 label4.Text = "GB";
-                tabControl1.TabPages["tabPage1"].Enabled = true;
+              //  tabControl1.TabPages["tabPage1"].Enabled = true;
 
             }
             if (string.IsNullOrWhiteSpace(textBox1.Text))
