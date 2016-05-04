@@ -20,6 +20,7 @@ namespace EZGoomba_Frontend
         string goombaezsav = "goombaez.sav";
         string goomba = "goomba.gba";
         string goombacolor = "goombacolor.gba";
+        bool customset = false;
 
         string customemu = "";
         private string emulator;
@@ -63,8 +64,19 @@ namespace EZGoomba_Frontend
             }
             else
             {
+                if (originrom.EndsWith(".gba") || (originrom.EndsWith(".agb")))
+                {
+                    customemu = originrom;
+                    customset = true;
+                    radioButton3.Checked = true;
+                    radioButton4.Checked = true;
+                    customset = false;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid ROM extension.");
+                }
                 originrom = oldrom;
-                MessageBox.Show("Invalid ROM extension.");
             }
             label1.Visible = false;
         }
@@ -161,13 +173,14 @@ namespace EZGoomba_Frontend
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked)
+            if (radioButton3.Checked && customset == false)
             {
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
                 openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
                 openFileDialog1.Title = "Open Emulator ROM";
                 openFileDialog1.ShowDialog();
                 customemu = openFileDialog1.FileName;
+                customset = false;
             }
         }
 
@@ -212,5 +225,10 @@ namespace EZGoomba_Frontend
             aboutfrm.Show();
         }
 
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help helpfrm = new Help();
+            helpfrm.Show();
+        }
     }
 }

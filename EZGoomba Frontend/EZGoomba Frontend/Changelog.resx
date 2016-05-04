@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="goomba" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goomba.gba;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="goombacolor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goombacolor.gba;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="goombacolorez" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goombacolorez.gba;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="goombacolorezsav" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goombacolorez.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="goombaez" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goombaez.gba;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="goombaezsav" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\goombaez.sav;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>
