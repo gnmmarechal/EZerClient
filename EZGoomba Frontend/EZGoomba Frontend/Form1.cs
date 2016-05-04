@@ -130,13 +130,13 @@ namespace EZGoomba_Frontend
             if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
-               // tabControl1.TabPages["tabPage1"].Enabled = false;
+                tabControl1.TabPages["tabPage1"].Enabled = false;
 
             }
             if (originrom.EndsWith(".gb") || originrom.EndsWith("*.gb.tns"))
             {
                 label4.Text = "GB";
-              //  tabControl1.TabPages["tabPage1"].Enabled = true;
+                tabControl1.TabPages["tabPage1"].Enabled = true;
 
             }
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -271,7 +271,6 @@ namespace EZGoomba_Frontend
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
                 openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
                 openFileDialog1.Title = "Open Emulator ROM";
-                openFileDialog1.Multiselect = false;
                 openFileDialog1.ShowDialog();
                 customemu = openFileDialog1.FileName;
                 customset = false;
@@ -283,7 +282,6 @@ namespace EZGoomba_Frontend
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
             openFileDialog2.Filter = "GameBoy ROM (*.gb)|*.gb;|GameBoy Color ROM (*.gbc)|*.gbc|All Files|*.*";
             openFileDialog2.Title = "Select ROM";
-            openFileDialog2.Multiselect = false;
             openFileDialog2.ShowDialog();
             string oldrom = originrom;
             originrom = openFileDialog2.FileName;
@@ -339,7 +337,6 @@ namespace EZGoomba_Frontend
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
                 openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
                 openFileDialog1.Title = "Open Emulator ROM";
-                openFileDialog1.Multiselect = false;
                 openFileDialog1.ShowDialog();
                 customemu = openFileDialog1.FileName;
                 customset = false;
