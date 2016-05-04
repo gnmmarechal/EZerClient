@@ -14,12 +14,13 @@ namespace EZGoomba_Frontend
     public partial class Form1 : Form
     {
         string originrom = "";
-        string goombacolorez = Directory.GetCurrentDirectory() + "Emulators/GoombaColorEZ/goombacolor.gba";
-        string goombacolorezsav = Directory.GetCurrentDirectory() + "Emulators/GoombaColorEZ/goombacolor.sav";
-        string goombaez = Directory.GetCurrentDirectory() + "Emulators/GoombaEZ/goomba.gba";
-        string goombaezsav = Directory.GetCurrentDirectory() + "Emulators/GoombaEZ/goomba.sav";
-        string goomba = Directory.GetCurrentDirectory() + "Emulators/Goomba/goomba.gba";
+        string goombacolorez = "goombacolor.gba";
+        string goombacolorezsav = "goombacolor.sav";
+        string goombaez = "goombaez.gba";
+        string goombaezsav = "goombaez.sav";
+        string goomba = "goomba.gba";
         string goombacolor = Directory.GetCurrentDirectory() + "Emulators/GoombaColor/goombacolor.gba";
+        private string emulator;
 
         public Form1()
         {
@@ -29,6 +30,7 @@ namespace EZGoomba_Frontend
         private void Form1_Load(object sender, EventArgs e)
         {
             this.AllowDrop = true;
+            this.MaximizeBox = false;
 
         }
 
@@ -52,28 +54,66 @@ namespace EZGoomba_Frontend
             string[] fileList = e.Data.GetData(DataFormats.FileDrop) as string[];
             originrom = fileList[0];
             label1.Visible = false;
+            textBox1.Text = originrom;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text = originrom;
-            if (originrom.EndsWith(".gbc"))
+            
+            if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
             }
-            else
+            if (originrom.EndsWith(".gb") || originrom.EndsWith("*.gb.tns"))
             {
                 label4.Text = "GB";
             }
             radioButton1.Checked = !radioButton2.Checked;
-
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                button1.Enabled = false;
+            }
+            else
+            {
+                button1.Enabled = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage1"])
             {
-                MessageBox.Show("Test");
+                if (radioButton1.Checked)
+                {
+                    emulator = "goomba.gba";
+                }
+                if (radioButton2.Checked)
+                {
+                    emulator = "goombaez.gba";
+                }
+                if (radioButton3.Checked)
+                {
+
+                }
+                string[] srcFileNames = { emulator, originrom};
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                saveFileDialog1.Title = "Save ROM";
+                saveFileDialog1.ShowDialog();
+
+                string destFileName = saveFileDialog1.FileName;
+
+                using (Stream destStream = File.OpenWrite(destFileName))
+                {
+                    foreach (string srcFileName in srcFileNames)
+                    {
+                        using (Stream srcStream = File.OpenRead(srcFileName))
+                        {
+                            srcStream.CopyTo(destStream);
+                        }
+                    }
+                }
+
             }
         }
     }
