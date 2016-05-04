@@ -19,6 +19,10 @@ namespace EZGoomba_Frontend
         string customemu = "";
         private string emulator;
         private string destFileName;
+        string[] originroms;
+        int originlength;
+        string completepath;
+        int hadgbc, hadrun;
 
         public Form1()
         {
@@ -51,8 +55,50 @@ namespace EZGoomba_Frontend
         {
             string[] fileList = e.Data.GetData(DataFormats.FileDrop) as string[];
             string oldrom = originrom;
-            originrom = fileList[0];
-            if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
+            //originrom = fileList[0];
+            originroms = fileList;
+            int originlength = originroms.Length;
+            int total = originlength;
+            bool i = false;
+            hadgbc = 0;
+            while (total > 0)
+            {
+                MessageBox.Show(originroms[total-1]);
+                originrom = originroms[total - 1];
+                if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
+                {
+                    if (i == false)
+                    {
+                        textBox1.Text = originrom;
+                        i = true;
+                    }
+                    else
+                    {
+                        textBox1.Text = textBox1.Text + " + " + originrom;
+                    }
+                    
+                }
+                else
+                {
+                    if (originrom.EndsWith(".gba") || (originrom.EndsWith(".agb")))
+                    {
+                        customemu = originrom;
+                        customset = true;
+                        radioButton3.Checked = true;
+                        radioButton4.Checked = true;
+                        customset = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid ROM extension.");
+                    }
+                    originrom = oldrom;
+                }
+
+                total--;
+            }
+
+          /*  if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
             {
                 textBox1.Text = originrom;
             }
@@ -71,13 +117,13 @@ namespace EZGoomba_Frontend
                     MessageBox.Show("Invalid ROM extension.");
                 }
                 originrom = oldrom;
-            }
+            }*/
             label1.Visible = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+
             if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
