@@ -19,7 +19,6 @@ namespace EZGoomba_Frontend
         string customemu = "";
         private string emulator;
         private string destFileName;
-        private bool mexican;
 
         public Form1()
         {
