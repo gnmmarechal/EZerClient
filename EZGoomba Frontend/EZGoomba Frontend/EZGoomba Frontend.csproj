@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Ph03nyx-Super-Mario-Retro-Flower-Fire-2.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -150,6 +153,7 @@
     <Content Include="bin\Debug\EZGoomba Frontend.exe" />
     <Content Include="bin\Debug\EZGoomba Frontend.pdb" />
     <Content Include="bin\Debug\EZGoomba Frontend.vshost.exe" />
+    <Content Include="Ph03nyx-Super-Mario-Retro-Flower-Fire-2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

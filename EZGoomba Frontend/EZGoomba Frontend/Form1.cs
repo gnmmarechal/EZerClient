@@ -271,5 +271,18 @@ namespace EZGoomba_Frontend
             Changelog changelog = new Changelog();
             changelog.Show();
         }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked && customset == false)
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                openFileDialog1.Title = "Open Emulator ROM";
+                openFileDialog1.ShowDialog();
+                customemu = openFileDialog1.FileName;
+                customset = false;
+            }
+        }
     }
 }

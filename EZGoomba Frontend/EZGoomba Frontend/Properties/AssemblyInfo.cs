@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EZGoomba Frontend")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Frontend for making Goomba-based ROMs")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Gnm Software 2012 | Gnmpolicemata")]
 [assembly: AssemblyProduct("EZGoomba Frontend")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright  Gnm Software 2012 | Gnmpolicemata© 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
