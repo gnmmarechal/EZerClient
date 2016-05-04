@@ -22,7 +22,9 @@ namespace EZGoomba_Frontend
         string[] originroms;
         int originlength;
         string completepath;
-        int hadgbc, hadrun;
+        int fst = 0;
+        private IEnumerable<string> srcFileNames;
+        private int hadgbc;
 
         public Form1()
         {
@@ -63,6 +65,7 @@ namespace EZGoomba_Frontend
             hadgbc = 0;
             while (total > 0)
             {
+                MessageBox.Show(Convert.ToString(originlength));
                 MessageBox.Show(originroms[total-1]);
                 originrom = originroms[total - 1];
                 if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
@@ -190,7 +193,7 @@ namespace EZGoomba_Frontend
                 }
                 
             }
-            string[] srcFileNames = { emulator, originrom };
+            //string[] srcFileNames = { emulator, originrom };
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             if (originrom.EndsWith("*.tns"))
             {
@@ -213,15 +216,31 @@ namespace EZGoomba_Frontend
             }
             else
             {
-                using (Stream destStream = File.OpenWrite(destFileName))
+                while (originlength>0)
                 {
-                    foreach (string srcFileName in srcFileNames)
+                    if (fst == 0)
                     {
-                        using (Stream srcStream = File.OpenRead(srcFileName))
+                        string[] srcFileNames = { emulator, originroms[0] };
+                        fst = 1;
+                    }
+                    else
+                    {
+                        File.Copy(destFileName, "temprom.gba");
+                        string[] srcFileNames = { "temprom.gba", originroms[originlength] };
+                    }
+                    
+                    using (Stream destStream = File.OpenWrite(destFileName))
+                    {
+                        foreach (string srcFileName in srcFileNames)
                         {
-                            srcStream.CopyTo(destStream);
+                            using (Stream srcStream = File.OpenRead(srcFileName))
+                            {
+                                srcStream.CopyTo(destStream);
+                            }
                         }
                     }
+                    File.Delete("temprom.gba");
+                    originlength--;
                 }
                 if (radioButton2.Checked)
                 {
