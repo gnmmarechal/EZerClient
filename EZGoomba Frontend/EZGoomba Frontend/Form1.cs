@@ -216,7 +216,7 @@ namespace EZGoomba_Frontend
         private void loadROMToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog2 = new OpenFileDialog();
-            openFileDialog2.Filter = "GameBoy ROM (*.gb)|*.gb;|GameBoy Color ROM (*.gbc)|*.gbc|All Files|*.*";
+            openFileDialog2.Filter = "GameBoy/GameBoy Color ROM (*.gb,*.gbc)|*.gb;*.gbc|GameBoy ROM (*.gb)|*.gb|GameBoy Color ROM (*.gbc)|*.gbc|All Files|*.*";
             openFileDialog2.Title = "Select ROM";
             openFileDialog2.ShowDialog();
             string oldrom = originrom;
