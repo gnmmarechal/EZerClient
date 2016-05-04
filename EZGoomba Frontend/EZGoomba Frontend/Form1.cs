@@ -259,5 +259,11 @@ namespace EZGoomba_Frontend
             Help helpfrm = new Help();
             helpfrm.Show();
         }
+
+        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Changelog changelog = new Changelog();
+            changelog.Show();
+        }
     }
 }
