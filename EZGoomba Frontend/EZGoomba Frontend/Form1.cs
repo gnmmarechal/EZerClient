@@ -19,12 +19,7 @@ namespace EZGoomba_Frontend
         string customemu = "";
         private string emulator;
         private string destFileName;
-        string[] originroms;
-        int originlength;
-        string completepath;
-        int fst = 0;
-        private IEnumerable<string> srcFileNames;
-        private int hadgbc;
+        private bool mexican;
 
         public Form1()
         {
@@ -57,51 +52,8 @@ namespace EZGoomba_Frontend
         {
             string[] fileList = e.Data.GetData(DataFormats.FileDrop) as string[];
             string oldrom = originrom;
-            //originrom = fileList[0];
-            originroms = fileList;
-            int originlength = originroms.Length;
-            int total = originlength;
-            bool i = false;
-            hadgbc = 0;
-            while (total > 0)
-            {
-                MessageBox.Show(Convert.ToString(originlength));
-                MessageBox.Show(originroms[total-1]);
-                originrom = originroms[total - 1];
-                if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
-                {
-                    if (i == false)
-                    {
-                        textBox1.Text = originrom;
-                        i = true;
-                    }
-                    else
-                    {
-                        textBox1.Text = textBox1.Text + " + " + originrom;
-                    }
-                    
-                }
-                else
-                {
-                    if (originrom.EndsWith(".gba") || (originrom.EndsWith(".agb")))
-                    {
-                        customemu = originrom;
-                        customset = true;
-                        radioButton3.Checked = true;
-                        radioButton4.Checked = true;
-                        customset = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid ROM extension.");
-                    }
-                    originrom = oldrom;
-                }
-
-                total--;
-            }
-
-          /*  if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
+            originrom = fileList[0];
+            if (originrom.EndsWith(".gbc") || originrom.EndsWith(".gb") || originrom.EndsWith(".gbc.tns") || originrom.EndsWith(".gb.tns"))
             {
                 textBox1.Text = originrom;
             }
@@ -120,13 +72,13 @@ namespace EZGoomba_Frontend
                     MessageBox.Show("Invalid ROM extension.");
                 }
                 originrom = oldrom;
-            }*/
+            }
             label1.Visible = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            
             if (originrom.EndsWith(".gbc") || originrom.EndsWith("*.gbc.tns"))
             {
                 label4.Text = "GBC";
@@ -193,7 +145,7 @@ namespace EZGoomba_Frontend
                 }
                 
             }
-            //string[] srcFileNames = { emulator, originrom };
+            string[] srcFileNames = { emulator, originrom };
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             if (originrom.EndsWith("*.tns"))
             {
@@ -216,31 +168,15 @@ namespace EZGoomba_Frontend
             }
             else
             {
-                while (originlength>0)
+                using (Stream destStream = File.OpenWrite(destFileName))
                 {
-                    if (fst == 0)
+                    foreach (string srcFileName in srcFileNames)
                     {
-                        string[] srcFileNames = { emulator, originroms[0] };
-                        fst = 1;
-                    }
-                    else
-                    {
-                        File.Copy(destFileName, "temprom.gba");
-                        string[] srcFileNames = { "temprom.gba", originroms[originlength] };
-                    }
-                    
-                    using (Stream destStream = File.OpenWrite(destFileName))
-                    {
-                        foreach (string srcFileName in srcFileNames)
+                        using (Stream srcStream = File.OpenRead(srcFileName))
                         {
-                            using (Stream srcStream = File.OpenRead(srcFileName))
-                            {
-                                srcStream.CopyTo(destStream);
-                            }
+                            srcStream.CopyTo(destStream);
                         }
                     }
-                    File.Delete("temprom.gba");
-                    originlength--;
                 }
                 if (radioButton2.Checked)
                 {
