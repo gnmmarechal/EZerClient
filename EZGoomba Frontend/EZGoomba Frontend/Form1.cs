@@ -59,7 +59,7 @@ namespace EZGoomba_Frontend
             }
             else
             {
-                if (originrom.EndsWith(".gba") || originrom.EndsWith(".agb") || originrom.EndsWith(".gba.tns") || originrom.EndsWith(".agb.tns")
+                if (originrom.EndsWith(".gba") || originrom.EndsWith(".agb") || originrom.EndsWith(".gba.tns") || originrom.EndsWith(".agb.tns"))
                 {
                     customemu = originrom;
                     customset = true;
@@ -230,7 +230,7 @@ namespace EZGoomba_Frontend
             if (radioButton3.Checked && customset == false)
             {
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                openFileDialog1.Filter = "GameBoy Advance ROM (*.gba)|*.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                openFileDialog1.Filter = "GameBoy Advance ROM (*.gba/*.gba.tns)|*.gba;*.gba.tns|GameBoy Advance ROM (*.agb/*.agb.tns)|*.agb;*.agb.tns|All Files|*.*";
                 openFileDialog1.Title = "Open Emulator ROM";
                 openFileDialog1.ShowDialog();
                 customemu = openFileDialog1.FileName;
