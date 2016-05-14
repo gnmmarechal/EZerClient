@@ -59,7 +59,7 @@ namespace EZGoomba_Frontend
             }
             else
             {
-                if (originrom.EndsWith(".gba") || (originrom.EndsWith(".agb")))
+                if (originrom.EndsWith(".gba") || originrom.EndsWith(".agb") || originrom.EndsWith(".gba.tns") || originrom.EndsWith(".agb.tns")
                 {
                     customemu = originrom;
                     customset = true;
@@ -99,7 +99,32 @@ namespace EZGoomba_Frontend
             {
                 button1.Enabled = true;
             }
-          
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage1"])
+            {
+                if (radioButton2.Checked)
+                {
+                    checkBox1.Enabled = true;
+                }
+                else
+                {
+                    checkBox1.Enabled = false;
+                }
+            }
+            else
+            {
+                if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage2"])
+                {
+                    if (radioButton5.Checked)
+                    {
+                        checkBox1.Enabled = true;
+                    }
+                    else
+                    {
+                        checkBox1.Enabled = false;
+                    }
+                }
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)

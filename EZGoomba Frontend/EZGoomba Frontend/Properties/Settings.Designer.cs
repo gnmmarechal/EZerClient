@@ -22,17 +22,5 @@ namespace EZGoomba_Frontend.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string customgoomba {
-            get {
-                return ((string)(this["customgoomba"]));
-            }
-            set {
-                this["customgoomba"] = value;
-            }
-        }
     }
 }
