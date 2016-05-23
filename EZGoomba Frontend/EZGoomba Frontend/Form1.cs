@@ -99,6 +99,7 @@ namespace EZGoomba_Frontend
             {
                 button1.Enabled = true;
             }
+            /*
             if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage1"])
             {
                 if (radioButton2.Checked)
@@ -124,7 +125,7 @@ namespace EZGoomba_Frontend
                     }
                 }
             }
-
+            */
         }
 
         private void button1_Click(object sender, EventArgs e)
