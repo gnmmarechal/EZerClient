@@ -39,6 +39,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.loadROMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fastModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setOutputDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutEZGoombaFrontendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,6 +135,7 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fastModeToolStripMenuItem,
             this.changelogToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.aboutEZGoombaFrontendToolStripMenuItem});
@@ -140,6 +143,21 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.toolsToolStripMenuItem.Text = "Settings";
             this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
+            // 
+            // fastModeToolStripMenuItem
+            // 
+            this.fastModeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setOutputDirectoryToolStripMenuItem});
+            this.fastModeToolStripMenuItem.Name = "fastModeToolStripMenuItem";
+            this.fastModeToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.fastModeToolStripMenuItem.Text = "Fast Mode";
+            // 
+            // setOutputDirectoryToolStripMenuItem
+            // 
+            this.setOutputDirectoryToolStripMenuItem.Name = "setOutputDirectoryToolStripMenuItem";
+            this.setOutputDirectoryToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.setOutputDirectoryToolStripMenuItem.Text = "Set Output Directory";
+            this.setOutputDirectoryToolStripMenuItem.Click += new System.EventHandler(this.setOutputDirectoryToolStripMenuItem_Click);
             // 
             // changelogToolStripMenuItem
             // 
@@ -369,6 +387,8 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changelogToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem fastModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setOutputDirectoryToolStripMenuItem;
     }
 }
 

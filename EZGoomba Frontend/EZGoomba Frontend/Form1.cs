@@ -19,7 +19,10 @@ namespace EZGoomba_Frontend
         string customemu = "";
         private string emulator;
         private string destFileName;
-        private bool mexican;
+        private bool fastMode = false;
+        private String fastOutDir = "";
+
+
 
         public Form1()
         {
@@ -172,28 +175,68 @@ namespace EZGoomba_Frontend
                 
             }
             string[] srcFileNames = { emulator, originrom };
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            if (originrom.EndsWith("*.tns"))
-            {
 
-                saveFileDialog1.Filter = "TI-Nspire Document GBA ROM (*.gba.tns)|*.gba.tns|All Files|*.*";
-                saveFileDialog1.Title = "Save ROM";
-                saveFileDialog1.ShowDialog();
-                
+            if (!fastMode)
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                if (originrom.EndsWith("*.tns"))
+                {
+
+                    saveFileDialog1.Filter = "TI-Nspire Document GBA ROM (*.gba.tns)|*.gba.tns|All Files|*.*";
+                    saveFileDialog1.Title = "Save ROM";
+                    saveFileDialog1.ShowDialog();
+
+                }
+                else
+                {
+                    saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
+                    saveFileDialog1.Title = "Save ROM";
+                    saveFileDialog1.ShowDialog();
+                }
+                string destFileName = saveFileDialog1.FileName;
+                if (string.IsNullOrWhiteSpace(destFileName))
+                {
+                    MessageBox.Show("Canceled Operation.");
+                }
+                else
+                {
+                    using (Stream destStream = File.OpenWrite(destFileName))
+                    {
+                        foreach (string srcFileName in srcFileNames)
+                        {
+                            using (Stream srcStream = File.OpenRead(srcFileName))
+                            {
+                                srcStream.CopyTo(destStream);
+                            }
+                        }
+                    }
+                    if (radioButton2.Checked)
+                    {
+                        string extension = System.IO.Path.GetExtension(destFileName);
+                        string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                        string savname = finalname + ".sav";
+                        System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombaezsav);
+                    }
+                    if (radioButton4.Checked)
+                    {
+                        string extension = System.IO.Path.GetExtension(destFileName);
+                        string finalname = destFileName.Substring(0, destFileName.Length - extension.Length);
+                        string savname = finalname + ".sav";
+                        System.IO.File.WriteAllBytes(savname, EZGoomba_Frontend.Properties.Resources.goombacolorezsav);
+                    }
+                    if (File.Exists("goombaemu.bin"))
+                    {
+                        File.Delete("goombaemu.bin");
+                    }
+                }
             }
             else
             {
-                saveFileDialog1.Filter = "GameBoy Advance ROM (*.gba)| *.gba|GameBoy Advance ROM (*.agb)|*.agb|All Files|*.*";
-                saveFileDialog1.Title = "Save ROM";
-                saveFileDialog1.ShowDialog();
-            }
-            string destFileName = saveFileDialog1.FileName;
-            if (string.IsNullOrWhiteSpace(destFileName))
-            {
-                MessageBox.Show("Canceled Operation.");
-            }
-            else
-            {
+                string destFileName = System.IO.Path.GetFileNameWithoutExtension(srcFileNames[1]) + ".gba"; // Assuming the extension will be GBA
+                if (!fastOutDir.EndsWith("/") && !fastOutDir.EndsWith("\\"))
+                {
+                    fastOutDir += "\\";
+                }
                 using (Stream destStream = File.OpenWrite(destFileName))
                 {
                     foreach (string srcFileName in srcFileNames)
@@ -222,8 +265,8 @@ namespace EZGoomba_Frontend
                 {
                     File.Delete("goombaemu.bin");
                 }
-            }
 
+            }
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -303,6 +346,16 @@ namespace EZGoomba_Frontend
                 customemu = openFileDialog1.FileName;
                 customset = false;
             }
+        }
+
+        private void fastCompilationFrontendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void setOutputDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
